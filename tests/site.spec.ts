@@ -85,12 +85,21 @@ test("membership actions and Events navigation work", async ({ page }) => {
   ).toHaveAttribute("href", /revtrak.net/);
   await expect(
     page.getByRole("link", { name: "Open form", exact: false }),
-  ).toHaveAttribute("href", "https://forms.gle/r1MADkZxiGSevNUw8");
+  ).toHaveAttribute("href", "https://forms.gle/kYYZot62bJzpkAXG8");
   await expect(
     page.getByRole("link", { name: "Upload agreement", exact: false }),
-  ).toHaveAttribute("href", "https://forms.gle/UwspqL8KXaxgkzLM8");
-  await page.getByRole("link", { name: "Event sign-ups", exact: true }).click();
-  await expect(page).toHaveURL(/events\/#sign-ups/);
+  ).toHaveAttribute("href", "https://forms.gle/ATA9eu6MFgsCEpeh7");
+  await expect(
+    page.getByRole("link", { name: "Sign up for events" }),
+  ).toHaveAttribute("href", "https://forms.gle/oqa34gXXsYJgGtP19");
+  await expect(
+    page.getByRole("link", { name: "Check membership progress" }),
+  ).toHaveAttribute("href", /1XzrwVvncEfQUZJimHIfTzv4Nn_v6N_OtNYxX9q-J9OI/);
+  await page
+    .getByRole("navigation")
+    .getByRole("link", { name: "Events", exact: true })
+    .click();
+  await expect(page).toHaveURL(/events\//);
   await expect(page.locator("iframe")).toHaveAttribute(
     "src",
     "https://docs.google.com/spreadsheets/d/1JzBsV2bz8b6W2wM2s79yi831c82TB32lR4dH75gAWxo/preview",

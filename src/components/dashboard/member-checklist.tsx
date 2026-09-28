@@ -1,6 +1,7 @@
 "use client";
 import { ListChecks } from "lucide-react";
 import { membership } from "@/data/membership";
+import { links } from "@/data/links";
 import { useClock } from "@/lib/use-clock";
 import { ActionLink } from "@/components/ui/action-link";
 export function MemberChecklist() {
@@ -38,11 +39,18 @@ export function MemberChecklist() {
                   </ActionLink>
                 ))}
               </div>
-              {step.note && <span className="missing-note">{step.note}</span>}
             </div>
           </li>
         ))}
       </ol>
+      <div className="membership-progress">
+        <ActionLink href={links.membershipSheet}>
+          Check membership progress
+        </ActionLink>
+        <p>
+          See which membership steps you have completed in the membership sheet.
+        </p>
+      </div>
       <p className="checklist-note">
         {closed
           ? "Contact TSA leadership on BAND with membership questions."

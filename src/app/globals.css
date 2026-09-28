@@ -556,6 +556,15 @@ summary:focus-visible {
   color: var(--muted);
   margin-top: 9px;
 }
+.membership-progress {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.membership-progress p {
+  margin-top: 8px;
+  font-size: 14px;
+}
 .checklist-note {
   font-size: 11px;
   border-top: 1px solid var(--line);
@@ -676,6 +685,15 @@ summary:focus-visible {
   font-size: 14px;
   color: var(--muted);
   flex-shrink: 0;
+}
+.resource-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+.resource-list li {
+  flex-wrap: wrap;
 }
 .resource-list p {
   margin-top: 4px;

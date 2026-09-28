@@ -38,11 +38,85 @@ export const calendarEvents: CalendarEvent[] = [
     category: "Deadline",
   },
   {
+    id: "ideation-workshop",
+    title: "Ideation Workshop",
+    date: "2026-10-06",
+    description:
+      "Workshop focused on project ideation. Time and location to be announced.",
+    category: "Meeting",
+  },
+  {
     id: "change-drop-deadline",
     title: "Change/drop deadline",
     date: "2026-10-10",
     description: "The deadline to change or drop an event is October 10.",
     href: "/deadlines/change-drop-deadline/",
+    category: "Deadline",
+  },
+  {
+    id: "ideation-deadline",
+    title: "Ideation deadline",
+    date: "2026-10-20",
+    description:
+      "Project ideation is due. The Materials Workshop is also today.",
+    href: "/deadlines/ideation-deadline/",
+    category: "Deadline",
+  },
+  {
+    id: "materials-workshop",
+    title: "Materials Workshop",
+    date: "2026-10-20",
+    description:
+      "Workshop focused on project materials. Time and location to be announced.",
+    category: "Meeting",
+  },
+  {
+    id: "materials-deadline",
+    title: "Materials deadline",
+    date: "2026-11-16",
+    description: "Project materials are due.",
+    href: "/deadlines/materials-deadline/",
+    category: "Deadline",
+  },
+  {
+    id: "25-percent-checkpoint",
+    title: "25% Checkpoint",
+    date: "2026-12-01",
+    description: "25% project completion checkpoint.",
+    href: "/deadlines/25-percent-checkpoint/",
+    category: "Deadline",
+  },
+  {
+    id: "50-percent-checkpoint",
+    title: "50% Checkpoint",
+    date: "2026-12-15",
+    description: "50% project completion checkpoint.",
+    href: "/deadlines/50-percent-checkpoint/",
+    category: "Deadline",
+  },
+  {
+    id: "75-percent-checkpoint",
+    title: "75% Checkpoint",
+    date: "2027-01-11",
+    description:
+      "75% project completion checkpoint. In-house competition if necessary.",
+    href: "/deadlines/75-percent-checkpoint/",
+    category: "Deadline",
+  },
+  {
+    id: "in-house-competition",
+    title: "In-house competition (if necessary)",
+    date: "2027-01-11",
+    description:
+      "An in-house competition will be held if necessary. Check with TSA leadership for confirmation.",
+    category: "Competition",
+  },
+  {
+    id: "project-submission-deadline",
+    title: "Project submission deadline",
+    date: "2027-01-26",
+    description: "Final project submissions are due.",
+    href: "/deadlines/project-submission-deadline/",
     category: "Deadline",
   },
 ];

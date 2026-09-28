@@ -57,12 +57,15 @@ export default function EventsPage() {
                 ))}
               </li>
               <li>
-                <strong>Find your event in the sheet.</strong>
+                <strong>Sign up using the event form.</strong>
                 <p>
-                  Use the sheet’s tabs to find your event, check your name, and
-                  sign up for at least one competition. Open the full
-                  spreadsheet to make edits.
+                  Submit the event sign-up form for at least one competition.
+                  Use the spreadsheet below to view all sign-ups and check your
+                  name.
                 </p>
+                <ActionLink href={links.eventSignupForm}>
+                  Sign up for events
+                </ActionLink>
               </li>
             </ol>
           </section>
@@ -76,9 +79,14 @@ export default function EventsPage() {
                 <p className="eyebrow">TSA 26-27 Signups</p>
                 <h2 id="signups-title">Event sign-ups</h2>
               </div>
-              <ActionLink href={links.signups} variant="primary">
-                Open Full Spreadsheet
-              </ActionLink>
+              <div className="step-links">
+                <ActionLink href={links.eventSignupForm} variant="primary">
+                  Sign up for events
+                </ActionLink>
+                <ActionLink href={links.signups} variant="outline">
+                  Open Full Spreadsheet
+                </ActionLink>
+              </div>
             </div>
             <div className="sheet-frame">
               <iframe

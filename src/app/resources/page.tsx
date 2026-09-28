@@ -11,8 +11,12 @@ export const metadata: Metadata = {
 };
 
 const usefulLinks = [
+  { title: "Membership progress sheet", href: links.membershipSheet },
   { title: "Event sign-up spreadsheet", href: links.signups },
   { title: "Membership form", href: links.membership },
+  { title: "Event sign-up form", href: links.eventSignupForm },
+  { title: "Officer applications", href: links.officerApplications },
+  { title: "Parent-Student Agreement file", href: links.parentAgreement },
   { title: "Pay TSA dues", href: links.dues },
   { title: "Parent-Student Agreement upload", href: links.parentUpload },
   { title: "National TSA event information", href: links.nationalEvents },
@@ -27,7 +31,20 @@ function ResourceList({ items }: { items: Resource[] }) {
             <ActionLink href={resource.href}>{resource.title}</ActionLink>
             {resource.description && <p>{resource.description}</p>}
           </div>
-          <span className="resource-type">{resource.type}</span>
+          <div className="resource-actions">
+            <span className="resource-type">{resource.type}</span>
+            {resource.href.startsWith("/") &&
+              !resource.href.startsWith("//") && (
+                <a
+                  className="action-link"
+                  href={resource.href}
+                  download
+                  aria-label={`Download ${resource.title}`}
+                >
+                  Download
+                </a>
+              )}
+          </div>
         </li>
       ))}
     </ul>

@@ -17,7 +17,7 @@ const href = (file) =>
   "/" +
   path.relative(root, file).split(path.sep).map(encodeURIComponent).join("/");
 const resources = files
-  .filter((file) => /\.(pdf|pptx?|docx?)$/i.test(file))
+  .filter((file) => /\.(pdf|pptx?|ppsx?|docx?|xlsx?|csv|txt|zip)$/i.test(file))
   .map((file) => {
     const name = path.basename(file);
     const clean = name
@@ -27,28 +27,37 @@ const resources = files
       .replace(/\s+/g, " ")
       .trim();
     const parentAgreement = /parent.*(letter|agreement)|ctso/i.test(clean);
-    const category = parentAgreement
-      ? "Getting Started"
-      : /officer|leadership/i.test(clean)
-        ? "Leadership"
-        : /meeting|intro|presentation|slides/i.test(clean)
-          ? "Meetings"
-          : "Competitions";
+    const isMeetingFile =
+      path.relative(root, file).split(path.sep).slice(0, 2).join("/") ===
+      "documents/meetings";
+    const category = isMeetingFile
+      ? "Meetings"
+      : parentAgreement
+        ? "Getting Started"
+        : /officer|leadership/i.test(clean)
+          ? "Leadership"
+          : /meeting|intro|presentation|slides/i.test(clean)
+            ? "Meetings"
+            : "Competitions";
     return {
       id:
         clean.toLowerCase().replace(/[^a-z0-9]+/g, "-") +
         "-" +
         Buffer.from(path.relative(root, file)).toString("base64url"),
-      title: parentAgreement ? "2026–27 CTSO Parent-Student Agreement" : clean,
-      description: parentAgreement
-        ? "Print, sign, scan, and upload your completed agreement."
-        : category === "Meetings"
-          ? "Chapter meeting materials. Review these if you missed the meeting."
-          : "Chapter document. Open the file for full details.",
+      title:
+        parentAgreement && !isMeetingFile
+          ? "2026–27 CTSO Parent-Student Agreement"
+          : clean,
+      description:
+        parentAgreement && !isMeetingFile
+          ? "Print, sign, scan, and upload your completed agreement."
+          : category === "Meetings"
+            ? "Chapter meeting materials. Review these if you missed the meeting."
+            : "Chapter document. Open the file for full details.",
       category,
       href: href(file),
       type: path.extname(file).slice(1).toUpperCase(),
-      parentAgreement,
+      parentAgreement: parentAgreement && !isMeetingFile,
     };
   });
 const logo = files.find(
