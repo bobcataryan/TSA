@@ -1,4 +1,32 @@
 {
   "logo": null,
-  "resources": []
+  "resources": [
+    {
+      "id": "events-ZG9jdW1lbnRzL21lZXRpbmdzL0V2ZW50cy5wZGY",
+      "title": "Events",
+      "description": "Chapter meeting materials. Review these if you missed the meeting.",
+      "category": "Meetings",
+      "href": "/documents/meetings/Events.pdf",
+      "type": "PDF",
+      "parentAgreement": false
+    },
+    {
+      "id": "final-sign-ups-1--ZG9jdW1lbnRzL21lZXRpbmdzL0ZpbmFsIFNpZ24tdXBzICgxKS5wZGY",
+      "title": "Final Sign ups (1)",
+      "description": "Chapter meeting materials. Review these if you missed the meeting.",
+      "category": "Meetings",
+      "href": "/documents/meetings/Final%20Sign-ups%20(1).pdf",
+      "type": "PDF",
+      "parentAgreement": false
+    },
+    {
+      "id": "tsa-interest-meeting-1--ZG9jdW1lbnRzL21lZXRpbmdzL1RTQSBJbnRlcmVzdCBNZWV0aW5nICgxKS5wZGY",
+      "title": "TSA Interest Meeting (1)",
+      "description": "Chapter meeting materials. Review these if you missed the meeting.",
+      "category": "Meetings",
+      "href": "/documents/meetings/TSA%20Interest%20Meeting%20(1).pdf",
+      "type": "PDF",
+      "parentAgreement": false
+    }
+  ]
 }

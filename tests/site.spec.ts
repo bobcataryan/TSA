@@ -114,13 +114,16 @@ test("membership actions and Events navigation work", async ({ page }) => {
 });
 test("event filters and information guide are retained", async ({ page }) => {
   await page.goto("/events/");
-  await expect(page.locator(".event-card")).toHaveCount(3);
+  await expect(page.locator(".event-card")).toHaveCount(42);
   await page.getByRole("button", { name: "Coding", exact: true }).click();
+  await page.getByLabel("Search events").fill("Software Development");
   await expect(page.locator(".event-card")).toHaveCount(1);
-  await page.getByLabel("Event format").selectOption("Individual");
+  await expect(page.locator(".event-card-meta")).toContainText("2–6 people");
+  await page.getByLabel("People per team").selectOption("1");
   await expect(page.getByText("No events found.")).toBeVisible();
   await page.getByRole("button", { name: "Reset filters" }).click();
-  await expect(page.locator(".event-card")).toHaveCount(3);
+  await expect(page.locator(".event-card")).toHaveCount(42);
+  await expect(page.getByText(/example|unconfirmed/i)).toHaveCount(0);
   await expect(
     page.getByRole("heading", { name: "How to find event information" }),
   ).toBeVisible();

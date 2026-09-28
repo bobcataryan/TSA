@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { Info } from "lucide-react";
 import { PageIntro } from "@/components/ui/section-heading";
 import { EventExplorer } from "@/components/events/event-explorer";
 import { ActionLink } from "@/components/ui/action-link";
 import { links, signupsConfig } from "@/data/links";
-import { events } from "@/data/events";
 import { meetings } from "@/data/resources";
 export const metadata: Metadata = { title: "Competitive Events" };
 export default function EventsPage() {
@@ -17,19 +15,6 @@ export default function EventsPage() {
       />
       <section className="section">
         <div className="container">
-          {events.some((event) => event.status === "Example") && (
-            <div className="notice">
-              <Info size={20} />
-              <div>
-                <strong>A starting point for exploring events.</strong>
-                <p>
-                  These are examples, not confirmed Elkins offerings. Check the
-                  chapter spreadsheet below for available events. Official rules
-                  and team sizes will be added after chapter confirmation.
-                </p>
-              </div>
-            </div>
-          )}
           <EventExplorer />
           <section className="event-guide" aria-labelledby="event-guide-title">
             <h2 id="event-guide-title">How to find event information</h2>

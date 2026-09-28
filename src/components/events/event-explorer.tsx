@@ -7,8 +7,12 @@ import {
   UserRound,
   ArrowUpRight,
 } from "lucide-react";
-import { events, type TSAEvent } from "@/data/events";
-import { ActionLink } from "@/components/ui/action-link";
+import {
+  events,
+  fitsTeamSize,
+  teamSizeLabel,
+  type TSAEvent,
+} from "@/data/events";
 export function EventCard({ event }: { event: TSAEvent }) {
   return (
     <article className="event-card" id={event.id}>
@@ -17,52 +21,23 @@ export function EventCard({ event }: { event: TSAEvent }) {
         <ArrowUpRight size={24} strokeWidth={1.2} aria-hidden="true" />
       </div>
       <h3>{event.name}</h3>
-      <p>{event.description}</p>
       <div className="event-card-meta">
         <span>
-          {event.teamType === "Individual" ? (
+          {event.maxTeamSize === 1 ? (
             <UserRound size={14} />
           ) : (
             <Users size={14} />
           )}
-          {event.teamType}
-          {event.maxTeamSize ? ` · up to ${event.maxTeamSize}` : ""}
-        </span>
-        <span className="tag">
-          {event.status === "Example" ? "Example · unconfirmed" : event.status}
+          {teamSizeLabel(event)}
         </span>
       </div>
-      {(event.requirements.length > 0 ||
-        event.importantDates.length > 0 ||
-        event.resources.length > 0) && (
-        <details>
-          <summary>Requirements & resources</summary>
-          {event.requirements.length > 0 && (
-            <ul>
-              {event.requirements.map((rule) => (
-                <li key={rule}>{rule}</li>
-              ))}
-            </ul>
-          )}
-          {event.importantDates.map((date) => (
-            <p key={date.label}>
-              {date.label}: {date.date}
-            </p>
-          ))}
-          {event.resources.map((resource) => (
-            <ActionLink key={resource.href} href={resource.href}>
-              {resource.label}
-            </ActionLink>
-          ))}
-        </details>
-      )}
     </article>
   );
 }
 export function EventExplorer() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All events");
-  const [team, setTeam] = useState("All formats");
+  const [team, setTeam] = useState("");
   const categories = [
     "All events",
     ...new Set(events.map((event) => event.category)),
@@ -70,8 +45,8 @@ export function EventExplorer() {
   const filtered = events.filter(
     (event) =>
       (category === "All events" || category === event.category) &&
-      (team === "All formats" || team === event.teamType) &&
-      `${event.name} ${event.description} ${event.category}`
+      (team === "" || fitsTeamSize(event, Number(team))) &&
+      `${event.name} ${event.category}`
         .toLowerCase()
         .includes(query.toLowerCase().trim()),
   );
@@ -89,17 +64,17 @@ export function EventExplorer() {
         </label>
         <label className="format-filter">
           <SlidersHorizontal size={16} />
-          <span className="sr-only">Event format</span>
+          <span className="sr-only">People per team</span>
           <select
             value={team}
             onChange={(event) => setTeam(event.target.value)}
           >
-            <option>All formats</option>
-            {[...new Set(events.map((event) => event.teamType))].map(
-              (format) => (
-                <option key={format}>{format}</option>
-              ),
-            )}
+            <option value="">Any team size</option>
+            {[1, 2, 3, 4, 5, 6].map((size) => (
+              <option key={size} value={size}>
+                {size} {size === 1 ? "person" : "people"}
+              </option>
+            ))}
           </select>
         </label>
       </div>
@@ -117,9 +92,6 @@ export function EventExplorer() {
       </div>
       <p className="result-count" role="status">
         {filtered.length} {filtered.length === 1 ? "event" : "events"}
-        {events.some((event) => event.status === "Example")
-          ? " · Examples are not confirmed chapter offerings"
-          : ""}
       </p>
       {filtered.length ? (
         <div className="event-grid">
@@ -137,7 +109,7 @@ export function EventExplorer() {
             onClick={() => {
               setQuery("");
               setCategory("All events");
-              setTeam("All formats");
+              setTeam("");
             }}
           >
             Reset filters
