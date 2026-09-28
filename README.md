@@ -1,6 +1,6 @@
 # Elkins TSA
 
-A chapter dashboard, competitive events directory, and static deadline detail pages.
+A chapter dashboard, competitive events directory, deadline detail pages, resources, and a blank photo gallery.
 
 ## Run
 
@@ -18,7 +18,8 @@ npm run dev
 - **Deadline pages:** `src/data/deadlines.ts` contains instructions and related links, keyed by calendar event ID. Deadline dates and titles come from `src/data/calendar.ts`; link each calendar entry to `/deadlines/<event-id>/`. Add the officer form link and confirmed change/drop process here when available.
 - **Competitive events:** `src/data/events.ts`. Existing examples remain labeled until chapter offerings are confirmed.
 - **Forms and Google Sheet:** `src/data/links.ts`. The Events page embeds the provided sheet’s `/preview` URL and always offers a direct Google Sheets link. It does not scrape, copy, or store spreadsheet data, and the embed respects Google’s sharing permissions.
-- **PDF descriptions:** `src/data/resources.ts` supports overrides for auto-indexed documents. Parent agreements attach to the checklist; meeting files attach to the Events information guide.
+- **Resources:** `/resources/` lists past meeting presentations, other files, and existing chapter links. `src/data/resources.ts` supports curated file/link entries and overrides for auto-indexed documents. Parent agreements also attach to the checklist; meeting files also attach to the Events information guide. PDF, PowerPoint, and Word files in `public/documents/` are indexed automatically; include `meeting` in meeting presentation filenames or set their category to `Meetings` in curated entries.
+- **Photo Gallery:** `/photogallery/` is intentionally blank apart from its heading until photos are provided.
 
 ## Add uploads
 
@@ -34,4 +35,4 @@ npm run test:e2e
 
 Browser tests use local Google Chrome and the development server on port 3000. They cover the calendar, checklist links, Events filters, embed URL, removed routes, responsive layout, and accessibility. The Google Sheet itself is a third-party document; its permissions remain controlled by its owner.
 
-The earlier long homepage, announcement/resources/about/sign-up pages, global search, and footer have been removed. Source history preserves the previous version.
+The earlier long homepage, announcement/about/sign-up pages, global search, and footer have been removed. Source history preserves the previous version.

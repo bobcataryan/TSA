@@ -1,8 +1,8 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-const routes = ["/", "/events/"];
+const routes = ["/", "/events/", "/resources/", "/photogallery/"];
 for (const width of [1440, 834, 390, 320]) {
-  test(`two-page layout at ${width}px`, async ({ page }) => {
+  test(`site layout at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 950 });
     const errors: string[] = [];
     page.on("pageerror", (e) => {
@@ -27,10 +27,10 @@ for (const width of [1440, 834, 390, 320]) {
         page
           .getByRole("navigation", { name: "Main navigation" })
           .getByRole("link"),
-      ).toHaveCount(2);
+      ).toHaveCount(4);
       await expect(page.locator("footer")).toHaveCount(0);
       await page.screenshot({
-        path: `test-results/screenshots/${width}-${route === "/" ? "dashboard" : "events"}.png`,
+        path: `test-results/screenshots/${width}-${route === "/" ? "dashboard" : route.replaceAll("/", "")}.png`,
         fullPage: true,
         mask: [page.locator("iframe")],
       });
@@ -123,12 +123,7 @@ test("event filters and information guide are retained", async ({ page }) => {
   );
 });
 test("removed pages are gone", async ({ page }) => {
-  for (const path of [
-    "/announcements/",
-    "/resources/",
-    "/sign-ups/",
-    "/about/",
-  ]) {
+  for (const path of ["/announcements/", "/sign-ups/", "/about/"]) {
     const response = await page.goto(path);
     expect(response?.status()).toBe(404);
   }

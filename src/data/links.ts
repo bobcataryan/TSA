@@ -13,4 +13,6 @@ export const signupsConfig = {
 export const navigation = [
   { label: "Dashboard", href: "/" },
   { label: "Events", href: "/events" },
+  { label: "Resources", href: "/resources" },
+  { label: "Photo Gallery", href: "/photogallery" },
 ];
