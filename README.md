@@ -13,7 +13,7 @@ npm run dev
 
 ## Edit content
 
-- **Calendar dates:** `src/data/calendar.ts`. Add entries with a title, `YYYY-MM-DD` date in Central Time, category, and optional time, description, and link. The calendar opens to the current month and supports month navigation and day selection. Only the known membership deadline is prefilled.
+- **Calendar dates:** `src/data/calendar.ts`. Add entries with a title, `YYYY-MM-DD` date in Central Time, category, and optional time, description, and link. The calendar opens to the current month and supports month navigation and day selection. The parent information meeting, membership deadline, and officer form sign-up deadline are prefilled.
 - **Membership checklist:** `src/data/membership.ts` contains the four steps and due date. No individual completion status is recorded or implied.
 - **Competitive events:** `src/data/events.ts`. Existing examples remain labeled until chapter offerings are confirmed.
 - **Forms and Google Sheet:** `src/data/links.ts`. The Events page embeds the provided sheet’s `/preview` URL and always offers a direct Google Sheets link. It does not scrape, copy, or store spreadsheet data, and the embed respects Google’s sharing permissions.

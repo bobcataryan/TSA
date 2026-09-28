@@ -60,7 +60,7 @@ test("calendar selects dates, navigates months and returns to today", async ({
     page.getByRole("heading", { name: "October 2026" }),
   ).toBeVisible();
   await expect(page.locator(".selected-day")).toContainText(
-    "No events scheduled",
+    "Officer form sign-up deadline",
   );
   await page.getByRole("button", { name: "Previous month" }).click();
   await expect(
@@ -69,10 +69,13 @@ test("calendar selects dates, navigates months and returns to today", async ({
   await page.getByRole("button", { name: "Today", exact: true }).click();
   await expect(
     page.getByRole("button", {
-      name: "September 28, 2026, today",
+      name: "September 28, 2026, today, Parent information meeting",
       exact: true,
     }),
   ).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator(".selected-day")).toContainText(
+    "6:00 PM Central Time",
+  );
 });
 test("membership actions and Events navigation work", async ({ page }) => {
   await page.goto("/");
