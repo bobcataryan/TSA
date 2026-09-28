@@ -1,6 +1,6 @@
 # Elkins TSA
 
-Two static pages: a chapter dashboard and the competitive events directory.
+A chapter dashboard, competitive events directory, and static deadline detail pages.
 
 ## Run
 
@@ -15,6 +15,7 @@ npm run dev
 
 - **Calendar dates:** `src/data/calendar.ts`. Add entries with a title, `YYYY-MM-DD` date in Central Time, category, and optional time, description, and link. The calendar opens to the current month and supports month navigation and day selection. The parent information meeting, membership deadline, and officer form sign-up deadline are prefilled.
 - **Membership checklist:** `src/data/membership.ts` contains the four steps and due date. No individual completion status is recorded or implied.
+- **Deadline pages:** `src/data/deadlines.ts` contains instructions and related links, keyed by calendar event ID. Deadline dates and titles come from `src/data/calendar.ts`; link each calendar entry to `/deadlines/<event-id>/`. Add the officer form link and confirmed change/drop process here when available.
 - **Competitive events:** `src/data/events.ts`. Existing examples remain labeled until chapter offerings are confirmed.
 - **Forms and Google Sheet:** `src/data/links.ts`. The Events page embeds the provided sheet’s `/preview` URL and always offers a direct Google Sheets link. It does not scrape, copy, or store spreadsheet data, and the embed respects Google’s sharing permissions.
 - **PDF descriptions:** `src/data/resources.ts` supports overrides for auto-indexed documents. Parent agreements attach to the checklist; meeting files attach to the Events information guide.
