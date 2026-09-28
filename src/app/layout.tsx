@@ -2,15 +2,13 @@ import type { Metadata } from "next";
 import "@fontsource-variable/geist";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
-import { DeadlineStrip } from "@/components/ui/deadline";
 export const metadata: Metadata = {
   title: {
-    default: "Elkins High School TSA | 2026–2027",
+    default: "Elkins TSA | Chapter Dashboard",
     template: "%s | Elkins TSA",
   },
   description:
-    "The 2026–2027 Elkins High School Technology Student Association hub. Membership steps, deadlines, announcements, competitive events, and meeting resources.",
+    "Elkins High School TSA: the chapter calendar, four membership steps, competitive events, and event sign-ups for 2026–2027.",
   icons: { icon: "/icon.svg" },
 };
 export default function RootLayout({
@@ -24,10 +22,8 @@ export default function RootLayout({
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>
-        <DeadlineStrip />
         <Navbar />
         <main id="main-content">{children}</main>
-        <Footer />
       </body>
     </html>
   );
