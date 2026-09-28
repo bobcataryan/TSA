@@ -74,7 +74,7 @@ test("calendar selects dates, navigates months and returns to today", async ({
     }),
   ).toHaveAttribute("aria-pressed", "true");
   await expect(page.locator(".selected-day")).toContainText(
-    "6:00 PM Central Time",
+    "6:00–6:45 PM Central Time",
   );
 });
 test("membership actions and Events navigation work", async ({ page }) => {

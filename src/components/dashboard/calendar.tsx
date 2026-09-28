@@ -152,7 +152,9 @@ export function ChapterCalendar() {
                 {event.description && <p>{event.description}</p>}
               </div>
               {event.href && (
-                <ActionLink href={event.href}>View details</ActionLink>
+                <ActionLink href={event.href}>
+                  {event.linkLabel ?? "View details"}
+                </ActionLink>
               )}
             </article>
           ))

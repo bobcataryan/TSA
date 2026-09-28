@@ -5,6 +5,7 @@ export interface CalendarEvent {
   time?: string;
   description?: string;
   href?: string;
+  linkLabel?: string;
   category: "Deadline" | "Meeting" | "Competition" | "Other";
 }
 // Add chapter dates here. No backend or calendar service is needed.
@@ -13,7 +14,10 @@ export const calendarEvents: CalendarEvent[] = [
     id: "parent-information-meeting",
     title: "Parent information meeting",
     date: "2026-09-28",
-    time: "6:00 PM Central Time",
+    time: "6:00–6:45 PM Central Time",
+    description: "Join the parent information meeting on Microsoft Teams.",
+    href: "https://teams.microsoft.com/meet/26033785974118?p=Ojwty4Dc35XF0tMwvQ",
+    linkLabel: "Join meeting",
     category: "Meeting",
   },
   {
