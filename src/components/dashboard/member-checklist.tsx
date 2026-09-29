@@ -13,10 +13,15 @@ export function MemberChecklist() {
       id="checklist"
       aria-labelledby="checklist-title"
     >
-      <div className="panel-eyebrow">
-        <ListChecks size={16} /> Membership
+      <div className="membership-heading">
+        <div className="panel-eyebrow">
+          <ListChecks size={16} /> Membership / 2026–27
+        </div>
+        <h2 id="checklist-title">
+          Make it official<span>.</span>
+        </h2>
+        <p>Four steps. One chapter.</p>
       </div>
-      <h2 id="checklist-title">Your four steps.</h2>
       <div className={`membership-due ${closed ? "closed" : ""}`}>
         <strong>
           {closed ? "Membership deadline passed" : "Complete all four by"}

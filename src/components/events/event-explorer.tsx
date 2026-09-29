@@ -5,7 +5,13 @@ import {
   SlidersHorizontal,
   Users,
   UserRound,
-  ArrowUpRight,
+  Code2,
+  FlaskConical,
+  Cog,
+  Palette,
+  Mic2,
+  Clapperboard,
+  Flag,
 } from "lucide-react";
 import {
   events,
@@ -13,12 +19,29 @@ import {
   teamSizeLabel,
   type TSAEvent,
 } from "@/data/events";
+const categoryIcons = {
+  Engineering: Cog,
+  Design: Palette,
+  Coding: Code2,
+  Media: Clapperboard,
+  Science: FlaskConical,
+  Presentation: Mic2,
+  Leadership: Flag,
+};
 export function EventCard({ event }: { event: TSAEvent }) {
+  const Icon =
+    categoryIcons[event.category as keyof typeof categoryIcons] ?? Cog;
   return (
-    <article className="event-card" id={event.id}>
+    <article
+      className="event-card"
+      id={event.id}
+      data-category={event.category}
+    >
       <div className="event-card-top">
         <span className="eyebrow">{event.category}</span>
-        <ArrowUpRight size={24} strokeWidth={1.2} aria-hidden="true" />
+        <span className="event-icon">
+          <Icon size={24} strokeWidth={1.5} aria-hidden="true" />
+        </span>
       </div>
       <h3>{event.name}</h3>
       <div className="event-card-meta">
@@ -29,6 +52,20 @@ export function EventCard({ event }: { event: TSAEvent }) {
             <Users size={14} />
           )}
           {teamSizeLabel(event)}
+        </span>
+        <span className="team-capacity" aria-hidden="true">
+          {Array.from({ length: 6 }, (_, i) => (
+            <span
+              key={i}
+              className={
+                i < event.minTeamSize
+                  ? "required"
+                  : i < event.maxTeamSize
+                    ? "available"
+                    : ""
+              }
+            />
+          ))}
         </span>
       </div>
     </article>
@@ -51,7 +88,7 @@ export function EventExplorer() {
         .includes(query.toLowerCase().trim()),
   );
   return (
-    <div>
+    <div className="event-explorer">
       <div className="filter-toolbar">
         <label className="filter-search">
           <Search size={19} />
@@ -91,7 +128,22 @@ export function EventExplorer() {
         ))}
       </div>
       <p className="result-count" role="status">
-        {filtered.length} {filtered.length === 1 ? "event" : "events"}
+        <span>
+          <strong>{String(filtered.length).padStart(2, "0")}</strong>{" "}
+          {filtered.length === 1 ? "event" : "events"} to explore
+        </span>
+        {(query || category !== "All events" || team) && (
+          <button
+            className="clear-filters"
+            onClick={() => {
+              setQuery("");
+              setCategory("All events");
+              setTeam("");
+            }}
+          >
+            Clear filters <span aria-hidden="true">×</span>
+          </button>
+        )}
       </p>
       {filtered.length ? (
         <div className="event-grid">

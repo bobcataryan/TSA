@@ -11,11 +11,11 @@ export function Navbar() {
         <Link href="/" className="brand" aria-label="Elkins TSA dashboard">
           <Brand />
           <span>
-            ELKINS HIGH SCHOOL<small>Technology Student Association</small>
+            ELKINS<small>High School TSA</small>
           </span>
         </Link>
         <nav aria-label="Main navigation">
-          {navigation.map((item) => (
+          {navigation.map((item, index) => (
             <Link
               key={item.href}
               href={item.href}
@@ -25,11 +25,16 @@ export function Navbar() {
                   : undefined
               }
             >
+              <span className="nav-number" aria-hidden="true">
+                0{index + 1}
+              </span>
               {item.label}
             </Link>
           ))}
         </nav>
-        <span className="school-year">2026—2027</span>
+        <span className="school-year">
+          <span className="status-dot" /> 26—27
+        </span>
       </div>
     </header>
   );

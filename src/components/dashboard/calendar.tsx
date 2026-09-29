@@ -39,7 +39,11 @@ export function ChapterCalendar() {
     setSelected(null);
   }
   return (
-    <section className="calendar-panel" aria-labelledby="calendar-title">
+    <section
+      className="calendar-panel"
+      id="calendar"
+      aria-labelledby="calendar-title"
+    >
       <div className="calendar-toolbar">
         <div>
           <div className="panel-eyebrow">
@@ -136,6 +140,7 @@ export function ChapterCalendar() {
         <span>All times Central</span>
       </div>
       <div className="selected-day" aria-live="polite">
+        <p className="eyebrow">On the schedule</p>
         <h3>
           {label(selectedDate, {
             weekday: "long",
@@ -160,6 +165,34 @@ export function ChapterCalendar() {
           ))
         ) : (
           <p>No events scheduled for this day.</p>
+        )}
+      </div>
+      <div className="month-agenda">
+        <div className="agenda-heading">
+          <h3>This month</h3>
+          <span>{monthEvents.length} dates</span>
+        </div>
+        {monthEvents.length ? (
+          monthEvents.map((event) => (
+            <button
+              key={event.id}
+              className={`agenda-row ${event.date === selectedDate ? "active" : ""}`}
+              onClick={() => setSelected(event.date)}
+              aria-label={`Select ${event.title} on ${label(event.date, { month: "long", day: "numeric" })}`}
+            >
+              <span className="agenda-date">
+                <strong>{event.date.slice(8)}</strong>
+                <span>{label(event.date, { month: "short" })}</span>
+              </span>
+              <span className="agenda-name">
+                {event.title}
+                <small>{event.time ?? event.category}</small>
+              </span>
+              <ChevronRight size={16} aria-hidden="true" />
+            </button>
+          ))
+        ) : (
+          <p>No chapter dates scheduled this month.</p>
         )}
       </div>
     </section>

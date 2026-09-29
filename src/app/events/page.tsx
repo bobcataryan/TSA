@@ -10,9 +10,17 @@ export default function EventsPage() {
     <>
       <PageIntro
         eyebrow="Competitive events"
-        title="Find your next challenge."
-        description="Explore your interests, find your team, and turn what you know into something you can show."
-      />
+        title="Find your event."
+        description="42 ways to put your ideas to work. Find your fit, build your team, and get started."
+        number="02"
+      >
+        <div className="intro-actions">
+          <ActionLink href={links.eventSignupForm} variant="primary">
+            Sign up for events
+          </ActionLink>
+          <ActionLink href="#sign-ups">View all sign-ups</ActionLink>
+        </div>
+      </PageIntro>
       <section className="section">
         <div className="container">
           <EventExplorer />
