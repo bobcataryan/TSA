@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
 import { calendarEvents, calendarInitialMonth } from "@/data/calendar";
 import { chapterDate, useClock } from "@/lib/use-clock";
@@ -15,6 +15,7 @@ export function ChapterCalendar() {
   const today = now === null ? null : chapterDate(now);
   const [viewedMonth, setViewedMonth] = useState<string | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
+  const selectedDetails = useRef<HTMLDivElement>(null);
   const month = viewedMonth ?? today?.slice(0, 7) ?? calendarInitialMonth;
   const [year, monthNumber] = month.split("-").map(Number);
   const offset = new Date(Date.UTC(year, monthNumber - 1, 1)).getUTCDay();
@@ -139,7 +140,7 @@ export function ChapterCalendar() {
         </span>
         <span>All times Central</span>
       </div>
-      <div className="selected-day" aria-live="polite">
+      <div className="selected-day" aria-live="polite" ref={selectedDetails}>
         <p className="eyebrow">On the schedule</p>
         <h3>
           {label(selectedDate, {
@@ -170,14 +171,20 @@ export function ChapterCalendar() {
       <div className="month-agenda">
         <div className="agenda-heading">
           <h3>This month</h3>
-          <span>{monthEvents.length} dates</span>
+          <span>
+            {monthEvents.length} {monthEvents.length === 1 ? "event" : "events"}
+          </span>
         </div>
         {monthEvents.length ? (
           monthEvents.map((event) => (
             <button
               key={event.id}
               className={`agenda-row ${event.date === selectedDate ? "active" : ""}`}
-              onClick={() => setSelected(event.date)}
+              onClick={() => {
+                setSelected(event.date);
+                selectedDetails.current?.scrollIntoView({ block: "nearest" });
+              }}
+              aria-pressed={event.date === selectedDate}
               aria-label={`Select ${event.title} on ${label(event.date, { month: "long", day: "numeric" })}`}
             >
               <span className="agenda-date">

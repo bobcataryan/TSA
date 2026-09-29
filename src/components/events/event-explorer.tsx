@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   Search,
   SlidersHorizontal,
@@ -75,6 +75,13 @@ export function EventExplorer() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All events");
   const [team, setTeam] = useState("");
+  const searchInput = useRef<HTMLInputElement>(null);
+  function resetFilters() {
+    setQuery("");
+    setCategory("All events");
+    setTeam("");
+    searchInput.current?.focus();
+  }
   const categories = [
     "All events",
     ...new Set(events.map((event) => event.category)),
@@ -93,7 +100,9 @@ export function EventExplorer() {
         <label className="filter-search">
           <Search size={19} />
           <input
-            placeholder="Search events, skills, or interests…"
+            ref={searchInput}
+            type="search"
+            placeholder="Search events or categories…"
             aria-label="Search events"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
@@ -133,14 +142,7 @@ export function EventExplorer() {
           {filtered.length === 1 ? "event" : "events"} to explore
         </span>
         {(query || category !== "All events" || team) && (
-          <button
-            className="clear-filters"
-            onClick={() => {
-              setQuery("");
-              setCategory("All events");
-              setTeam("");
-            }}
-          >
+          <button className="clear-filters" onClick={resetFilters}>
             Clear filters <span aria-hidden="true">×</span>
           </button>
         )}
@@ -156,14 +158,7 @@ export function EventExplorer() {
           <Search size={30} />
           <h3>No events found.</h3>
           <p>Try another search or reset the filters.</p>
-          <button
-            className="button button-outline"
-            onClick={() => {
-              setQuery("");
-              setCategory("All events");
-              setTeam("");
-            }}
-          >
+          <button className="button button-outline" onClick={resetFilters}>
             Reset filters
           </button>
         </div>

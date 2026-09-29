@@ -103,7 +103,7 @@ export default function ResourcesPage() {
                   </a>
                   <div className="presentation-info">
                     <div className="presentation-meta">
-                      <span>MEETING {String(index + 1).padStart(2, "0")}</span>
+                      <span>DOCUMENT {String(index + 1).padStart(2, "0")}</span>
                       <span>{meeting.type}</span>
                     </div>
                     <h3>
