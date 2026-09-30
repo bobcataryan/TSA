@@ -12,6 +12,7 @@ import {
   Mic2,
   Clapperboard,
   Flag,
+  ChevronDown,
 } from "lucide-react";
 import {
   events,
@@ -94,6 +95,16 @@ export function EventExplorer() {
         .toLowerCase()
         .includes(query.toLowerCase().trim()),
   );
+  const grouped = categories
+    .slice(1)
+    .map((item) => ({
+      category: item,
+      events: filtered.filter((event) => event.category === item),
+    }))
+    .filter((group) => group.events.length > 0);
+  const hasActiveFilters = Boolean(
+    query.trim() || category !== "All events" || team,
+  );
   return (
     <div className="event-explorer">
       <div className="filter-toolbar">
@@ -148,10 +159,41 @@ export function EventExplorer() {
         )}
       </p>
       {filtered.length ? (
-        <div className="event-grid">
-          {filtered.map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
+        <div className="event-groups">
+          {grouped.map((group, index) => {
+            const Icon =
+              categoryIcons[group.category as keyof typeof categoryIcons] ??
+              Cog;
+            return (
+              <details
+                className="event-category"
+                data-category={group.category}
+                key={`${group.category}-${query}-${category}-${team}`}
+                open={hasActiveFilters || index === 0}
+              >
+                <summary>
+                  <span className="event-icon" aria-hidden="true">
+                    <Icon size={22} strokeWidth={1.5} />
+                  </span>
+                  <span className="event-category-name">{group.category}</span>
+                  <span className="event-category-count">
+                    {group.events.length}{" "}
+                    {group.events.length === 1 ? "event" : "events"}
+                  </span>
+                  <ChevronDown
+                    className="event-category-chevron"
+                    size={20}
+                    aria-hidden="true"
+                  />
+                </summary>
+                <div className="event-grid">
+                  {group.events.map((event) => (
+                    <EventCard key={event.id} event={event} />
+                  ))}
+                </div>
+              </details>
+            );
+          })}
         </div>
       ) : (
         <div className="empty-state">

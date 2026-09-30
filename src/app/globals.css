@@ -930,6 +930,63 @@ summary:focus-visible {
 .clear-filters span {
   margin-left: 7px;
 }
+.event-groups {
+  display: grid;
+  gap: 14px;
+}
+.event-category {
+  --category-color: #456555;
+  --category-bg: #edf5ef;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: white;
+  overflow: hidden;
+}
+.event-category summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 88px;
+  padding: 18px 24px;
+  list-style: none;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.event-category summary::-webkit-details-marker {
+  display: none;
+}
+.event-category summary:hover {
+  background: #f8f9fd;
+}
+.event-category summary:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: -4px;
+}
+.event-category[open] summary {
+  border-bottom: 1px solid var(--line);
+}
+.event-category-name {
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.event-category-count {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+.event-category-chevron {
+  flex: none;
+  color: var(--muted);
+  transition: transform 0.2s;
+}
+.event-category[open] .event-category-chevron {
+  transform: rotate(180deg);
+}
+.event-category .event-grid {
+  padding: 18px;
+}
 .event-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -949,27 +1006,33 @@ summary:focus-visible {
     box-shadow 0.2s,
     border-color 0.2s;
 }
-.event-card[data-category="Engineering"] {
+.event-card[data-category="Engineering"],
+.event-category[data-category="Engineering"] {
   --category-color: #415baa;
   --category-bg: #eef2fd;
 }
-.event-card[data-category="Coding"] {
+.event-card[data-category="Coding"],
+.event-category[data-category="Coding"] {
   --category-color: #664ab1;
   --category-bg: #f3effb;
 }
-.event-card[data-category="Design"] {
+.event-card[data-category="Design"],
+.event-category[data-category="Design"] {
   --category-color: #a54149;
   --category-bg: #fdf0f1;
 }
-.event-card[data-category="Media"] {
+.event-card[data-category="Media"],
+.event-category[data-category="Media"] {
   --category-color: #90611d;
   --category-bg: #fcf6e9;
 }
-.event-card[data-category="Presentation"] {
+.event-card[data-category="Presentation"],
+.event-category[data-category="Presentation"] {
   --category-color: #307788;
   --category-bg: #edf7f9;
 }
-.event-card[data-category="Leadership"] {
+.event-card[data-category="Leadership"],
+.event-category[data-category="Leadership"] {
   --category-color: #934e7b;
   --category-bg: #f9eff5;
 }

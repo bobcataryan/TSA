@@ -115,9 +115,21 @@ test("membership actions and Events navigation work", async ({ page }) => {
 test("event filters and information guide are retained", async ({ page }) => {
   await page.goto("/events/");
   await expect(page.locator(".event-card")).toHaveCount(42);
+  const groups = page.locator("details.event-category");
+  await expect(groups).toHaveCount(7);
+  await expect(groups.first()).toHaveAttribute("open", "");
+  await expect(groups.nth(1)).not.toHaveAttribute("open");
+  await groups.nth(1).locator("summary").click();
+  await expect(groups.nth(1)).toHaveAttribute("open", "");
+  await groups.nth(1).locator("summary").click();
+  await expect(groups.nth(1)).not.toHaveAttribute("open");
   await page.getByRole("button", { name: "Coding", exact: true }).click();
   await page.getByLabel("Search events").fill("Software Development");
   await expect(page.locator(".event-card")).toHaveCount(1);
+  await expect(page.locator("details.event-category")).toHaveAttribute(
+    "open",
+    "",
+  );
   await expect(page.locator(".event-card-meta")).toContainText("2–6 people");
   await page.getByLabel("People per team").selectOption("1");
   await expect(page.getByText("No events found.")).toBeVisible();
