@@ -19,6 +19,10 @@ const usefulLinks = [
   { title: "Event sign-up form", href: links.eventSignupForm },
   { title: "Officer applications", href: links.officerApplications },
   { title: "Parent-Student Agreement file", href: links.parentAgreement },
+  {
+    title: "Parent-Student Agreement folder",
+    href: links.parentAgreementFolder,
+  },
   { title: "Pay TSA dues", href: links.dues },
   { title: "Parent-Student Agreement upload", href: links.parentUpload },
   { title: "National TSA event information", href: links.nationalEvents },

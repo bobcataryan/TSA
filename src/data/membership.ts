@@ -25,7 +25,7 @@ export const membership = {
       title: "Parent-Student Agreement",
       description: "Print, sign, scan, and upload your agreement.",
       links: [
-        { label: "Get agreement file", href: links.parentAgreement },
+        { label: "Download agreement PDF", href: links.parentAgreement },
         { label: "Upload agreement", href: links.parentUpload },
       ],
     },

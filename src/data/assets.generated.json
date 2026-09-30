@@ -2,6 +2,15 @@
   "logo": null,
   "resources": [
     {
+      "id": "2026-27-ctso-parent-student-agreement-ZG9jdW1lbnRzLzIwMjYtMjctQ1RTTy1QYXJlbnQtU3R1ZGVudC1BZ3JlZW1lbnQucGRm",
+      "title": "2026–27 CTSO Parent-Student Agreement",
+      "description": "Print, sign, scan, and upload your completed agreement.",
+      "category": "Getting Started",
+      "href": "/documents/2026-27-CTSO-Parent-Student-Agreement.pdf",
+      "type": "PDF",
+      "parentAgreement": true
+    },
+    {
       "id": "events-ZG9jdW1lbnRzL21lZXRpbmdzL0V2ZW50cy5wZGY",
       "title": "Events",
       "description": "Chapter meeting materials. Review these if you missed the meeting.",

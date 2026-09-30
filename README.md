@@ -18,18 +18,18 @@ npm run dev
 - **Deadline pages:** `src/data/deadlines.ts` contains instructions and related links, keyed by calendar event ID. Deadline dates and titles come from `src/data/calendar.ts`; link each calendar entry to `/deadlines/<event-id>/`. Add the confirmed change/drop process here when available.
 - **Competitive events:** `src/data/events.ts` contains the 42 supplied event names and people-per-team limits. Cards show exact sizes or ranges; the team-size filter includes any event whose range allows the selected number of people.
 - **Forms and Google Sheet:** `src/data/links.ts`. The Events page embeds the provided sheet’s `/preview` URL and always offers a direct Google Sheets link. It does not scrape, copy, or store spreadsheet data, and the embed respects Google’s sharing permissions.
-- **Resources:** `/resources/` lists past meeting presentations, other files, and existing chapter links. `src/data/resources.ts` supports curated file/link entries and overrides for auto-indexed documents. Parent agreements also attach to the checklist; meeting files also attach to the Events information guide. PDF, PowerPoint, and Word files in `public/documents/` are indexed automatically; include `meeting` in meeting presentation filenames or set their category to `Meetings` in curated entries.
+- **Resources:** `/resources/` lists past meeting presentations, other files, and existing chapter links. `src/data/resources.ts` supports curated file/link entries and overrides for auto-indexed documents. The agreement PDF is linked from the membership checklist and deadline page; the Events page links to its presentation. PDF, PowerPoint, and Word files in `public/documents/` are indexed automatically; include `meeting` in meeting presentation filenames or set their category to `Meetings` in curated entries.
 - **Photo Gallery:** `/photogallery/` is intentionally blank apart from its heading until photos are provided.
 
 ## Add uploads
 
-Put the TSA logo in `public/images/` with `tsa` or `logo` in its filename, and PDFs in `public/documents/`. Run `npm run assets:sync` or restart the development server. Production builds also index assets. Original filenames are preserved and URL-encoded. The parent letter is recognized from its filename and connected automatically. Verify and customize document titles/descriptions in `src/data/resources.ts` when needed.
+Put the TSA logo in `public/images/` with `tsa` or `logo` in its filename, and PDFs in `public/documents/`. Run `npm run assets:sync` or restart the development server. Production builds also index assets. Original filenames are preserved and URL-encoded. The parent agreement is recognized from its filename and listed under chapter files. Verify and customize document titles/descriptions in `src/data/resources.ts` when needed.
 
 ### Meeting files
 
 Drop past meeting files into **`public/documents/meetings/`**. Subfolders are supported. Every supported file in that folder is listed under **Past meeting presentations** on Resources, regardless of its filename, with an open link and a **Download** button. Supported types: PDF, PowerPoint (`.ppt`, `.pptx`, `.pps`, `.ppsx`), Word, Excel, CSV, TXT, and ZIP. Use descriptive filenames for readable titles.
 
-Run `npm run assets:sync` to refresh the local index, or `npm run build` to index and export the site together. Publish the new build to make uploads available on the hosted site; copying a file locally does not update the live site by itself. This is a local upload folder, not an in-browser uploader. The agreement file and turn-in form are linked directly from the supplied Google Drive folder and Google Form.
+Run `npm run assets:sync` to refresh the local index, or `npm run build` to index and export the site together. Publish the new build to make uploads available on the hosted site; copying a file locally does not update the live site by itself. This is a local upload folder, not an in-browser uploader. The Parent-Student Agreement PDF is served directly from `public/documents/`, and the original Google Drive folder and turn-in form remain linked on Resources.
 
 ## Verify
 

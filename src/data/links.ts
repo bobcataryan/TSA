@@ -6,7 +6,8 @@ export const links = {
   eventSignupForm: "https://forms.gle/oqa34gXXsYJgGtP19",
   signups:
     "https://docs.google.com/spreadsheets/d/1JzBsV2bz8b6W2wM2s79yi831c82TB32lR4dH75gAWxo/edit?usp=sharing",
-  parentAgreement:
+  parentAgreement: "/documents/2026-27-CTSO-Parent-Student-Agreement.pdf",
+  parentAgreementFolder:
     "https://drive.google.com/drive/folders/1n9s_BwsDx0rxdBKGveJud4qBLWWYiPlC",
   parentUpload: "https://forms.gle/ATA9eu6MFgsCEpeh7",
   officerApplications: "https://forms.gle/EBPs52Znt8pBEBwN6",

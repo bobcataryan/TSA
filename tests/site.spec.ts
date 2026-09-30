@@ -90,6 +90,12 @@ test("membership actions and Events navigation work", async ({ page }) => {
     page.getByRole("link", { name: "Upload agreement", exact: false }),
   ).toHaveAttribute("href", "https://forms.gle/ATA9eu6MFgsCEpeh7");
   await expect(
+    page.getByRole("link", { name: "Download agreement PDF" }),
+  ).toHaveAttribute(
+    "href",
+    "/documents/2026-27-CTSO-Parent-Student-Agreement.pdf",
+  );
+  await expect(
     page.getByRole("link", { name: "Sign up for events" }),
   ).toHaveAttribute("href", "https://forms.gle/oqa34gXXsYJgGtP19");
   await expect(
@@ -111,6 +117,30 @@ test("membership actions and Events navigation work", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "Chapter dashboard" }),
   ).toBeVisible();
+});
+test("parent-student agreement is available in chapter files", async ({
+  page,
+  request,
+}) => {
+  await page.goto("/resources/");
+  const file = page.getByRole("link", {
+    name: "2026–27 CTSO Parent-Student Agreement opens in a new tab",
+    exact: true,
+  });
+  await expect(file).toHaveAttribute(
+    "href",
+    "/documents/2026-27-CTSO-Parent-Student-Agreement.pdf",
+  );
+  await expect(
+    page.getByRole("link", {
+      name: "Download 2026–27 CTSO Parent-Student Agreement",
+    }),
+  ).toHaveAttribute("download", "");
+  const response = await request.get(
+    "/documents/2026-27-CTSO-Parent-Student-Agreement.pdf",
+  );
+  expect(response.ok()).toBe(true);
+  expect(response.headers()["content-type"]).toContain("application/pdf");
 });
 test("event filters and information guide are retained", async ({ page }) => {
   await page.goto("/events/");
