@@ -3,7 +3,6 @@ import { PageIntro } from "@/components/ui/section-heading";
 import { EventExplorer } from "@/components/events/event-explorer";
 import { ActionLink } from "@/components/ui/action-link";
 import { links, signupsConfig } from "@/data/links";
-import { meetings } from "@/data/resources";
 export const metadata: Metadata = { title: "Competitive Events" };
 export default function EventsPage() {
   return (
@@ -43,11 +42,9 @@ export default function EventsPage() {
                 <ActionLink href={links.nationalEvents}>
                   National TSA event information
                 </ActionLink>
-                {meetings.map((meeting) => (
-                  <ActionLink key={meeting.id} href={meeting.href}>
-                    {meeting.title}
-                  </ActionLink>
-                ))}
+                <ActionLink href="/documents/meetings/Events.pdf">
+                  Events PowerPoint
+                </ActionLink>
               </li>
               <li>
                 <strong>Sign up using the event form.</strong>
