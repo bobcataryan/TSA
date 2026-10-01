@@ -13,20 +13,19 @@ export function MemberChecklist() {
       id="checklist"
       aria-labelledby="checklist-title"
     >
-      <div className="membership-heading">
-        <div className="panel-eyebrow">
-          <ListChecks size={16} /> Membership / 2026–27
+      <div className="membership-top">
+        <div className="membership-heading">
+          <div className="panel-eyebrow">
+            <ListChecks size={16} /> Membership / 2026–27
+          </div>
+          <h2 id="checklist-title">Your four steps<span>.</span></h2>
         </div>
-        <h2 id="checklist-title">
-          Make it official<span>.</span>
-        </h2>
-        <p>Four steps. One chapter.</p>
-      </div>
-      <div className={`membership-due ${closed ? "closed" : ""}`}>
-        <strong>
-          {closed ? "Membership deadline passed" : "Complete all four by"}
-        </strong>
-        <span>{membership.deadlineLabel}</span>
+        <div className={`membership-due ${closed ? "closed" : ""}`}>
+          <strong>
+            {closed ? "Membership deadline passed" : "Complete all four by"}
+          </strong>
+          <span>{membership.deadlineLabel}</span>
+        </div>
       </div>
       <ol className="member-steps">
         {membership.steps.map((step, index) => (

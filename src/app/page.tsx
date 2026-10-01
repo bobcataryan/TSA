@@ -11,11 +11,11 @@ export default function Home() {
           <p className="eyebrow">
             <span className="status-dot" /> Elkins High School / TSA
           </p>
-          <h1 aria-label="Chapter dashboard">
-            Chapter <span>dashboard.</span>
+          <h1>
+            Membership <span>requirements.</span>
           </h1>
           <p className="heading-description">
-            Your next deadline. Your next idea. Your next step.
+            Complete all four steps to join Elkins TSA for 2026–27.
           </p>
         </div>
         <div className="season-mark" aria-label="2026–2027 season">
@@ -26,6 +26,7 @@ export default function Home() {
           <span>TECHNOLOGY STUDENT ASSOCIATION</span>
         </div>
       </header>
+      <MemberChecklist />
       <div className="chapter-strip">
         <span>
           <span className="status-dot" /> 2026–2027 season
@@ -37,10 +38,7 @@ export default function Home() {
           {resources.length} chapter documents
         </ActionLink>
       </div>
-      <div className="dashboard-grid">
-        <ChapterCalendar />
-        <MemberChecklist />
-      </div>
+      <ChapterCalendar />
     </div>
   );
 }
