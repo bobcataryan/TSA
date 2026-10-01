@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageIntro } from "@/components/ui/section-heading";
 import { EventExplorer } from "@/components/events/event-explorer";
 import { ActionLink } from "@/components/ui/action-link";
-import { links, signupsConfig } from "@/data/links";
+import { links } from "@/data/links";
 export const metadata: Metadata = { title: "Competitive Events" };
 export default function EventsPage() {
   return (
@@ -12,14 +12,7 @@ export default function EventsPage() {
         title="Find your event."
         description="42 ways to put your ideas to work. Find your fit, build your team, and get started."
         number="02"
-      >
-        <div className="intro-actions">
-          <ActionLink href={links.eventSignupForm} variant="primary">
-            Sign up for events
-          </ActionLink>
-          <ActionLink href="#sign-ups">View all sign-ups</ActionLink>
-        </div>
-      </PageIntro>
+      />
       <section className="section">
         <div className="container">
           <EventExplorer />
@@ -46,53 +39,7 @@ export default function EventsPage() {
                   Events PowerPoint
                 </ActionLink>
               </li>
-              <li>
-                <strong>Sign up using the event form.</strong>
-                <p>
-                  Submit the event sign-up form for at least one competition.
-                  Use the spreadsheet below to view all sign-ups and check your
-                  name.
-                </p>
-                <ActionLink href={links.eventSignupForm}>
-                  Sign up for events
-                </ActionLink>
-              </li>
             </ol>
-          </section>
-          <section
-            id="sign-ups"
-            className="signups-section"
-            aria-labelledby="signups-title"
-          >
-            <div className="section-heading">
-              <div>
-                <p className="eyebrow">TSA 26-27 Signups</p>
-                <h2 id="signups-title">Event sign-ups</h2>
-              </div>
-              <div className="step-links">
-                <ActionLink href={links.eventSignupForm} variant="primary">
-                  Sign up for events
-                </ActionLink>
-                <ActionLink href={links.signups} variant="outline">
-                  Open Full Spreadsheet
-                </ActionLink>
-              </div>
-            </div>
-            <div className="sheet-frame">
-              <iframe
-                src={signupsConfig.embedUrl}
-                title="TSA 26-27 event sign-ups spreadsheet"
-                loading="lazy"
-                referrerPolicy="strict-origin-when-cross-origin"
-              />
-            </div>
-            <p className="sheet-note">
-              If the sheet does not load or asks you to sign in,{" "}
-              <a href={links.signups} target="_blank" rel="noopener noreferrer">
-                open it in Google Sheets ↗
-              </a>
-              . Notice something incorrect? Message a TSA officer.
-            </p>
           </section>
         </div>
       </section>

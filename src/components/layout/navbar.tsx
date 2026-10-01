@@ -8,7 +8,7 @@ export function Navbar() {
   return (
     <header className="site-header">
       <div className="container navbar">
-        <Link href="/" className="brand" aria-label="Elkins TSA dashboard">
+        <Link href="/" className="brand" aria-label="Elkins TSA members">
           <Brand />
           <span>
             ELKINS<small>High School TSA</small>

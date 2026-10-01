@@ -1,14 +1,9 @@
-"use client";
 import { ListChecks } from "lucide-react";
 import { membership } from "@/data/membership";
-import { links } from "@/data/links";
-import { useClock } from "@/lib/use-clock";
 import { ActionLink } from "@/components/ui/action-link";
 export function MemberChecklist() {
-  const now = useClock();
-  const closed = now !== null && now >= new Date(membership.deadline).getTime();
   return (
-    <aside
+    <section
       className="membership-panel"
       id="checklist"
       aria-labelledby="checklist-title"
@@ -18,13 +13,8 @@ export function MemberChecklist() {
           <div className="panel-eyebrow">
             <ListChecks size={16} /> Membership / 2026–27
           </div>
-          <h2 id="checklist-title">Your four steps<span>.</span></h2>
-        </div>
-        <div className={`membership-due ${closed ? "closed" : ""}`}>
-          <strong>
-            {closed ? "Membership deadline passed" : "Complete all four by"}
-          </strong>
-          <span>{membership.deadlineLabel}</span>
+          <h2 id="checklist-title">Dues &amp; agreement<span>.</span></h2>
+          <p>Membership actions and documents</p>
         </div>
       </div>
       <ol className="member-steps">
@@ -47,19 +37,6 @@ export function MemberChecklist() {
           </li>
         ))}
       </ol>
-      <div className="membership-progress">
-        <ActionLink href={links.membershipSheet}>
-          Check membership progress
-        </ActionLink>
-        <p>
-          See which membership steps you have completed in the membership sheet.
-        </p>
-      </div>
-      <p className="checklist-note">
-        {closed
-          ? "Contact TSA leadership on BAND with membership questions."
-          : "All four steps are required. No exceptions."}
-      </p>
-    </aside>
+    </section>
   );
 }

@@ -1,4 +1,3 @@
-import { links } from "./links";
 import { membership } from "./membership";
 
 interface DeadlineDetails {
@@ -14,36 +13,14 @@ interface DeadlineDetails {
 
 export const deadlineDetails: Record<string, DeadlineDetails> = {
   "membership-deadline": {
-    introduction: "Complete all four steps to join Elkins TSA for 2026–2027.",
+    introduction: "Membership dues and the Parent-Student Agreement for 2026–2027.",
     steps: membership.steps,
-    note: "All four steps are required. No exceptions. Contact TSA leadership on BAND with membership questions.",
-  },
-  "officer-form-deadline": {
-    introduction: "Submit your officer form sign-up by October 1.",
-    steps: [
-      {
-        title: "Officer form sign-up",
-        description: "Complete the officer application form by October 1.",
-        links: [
-          {
-            label: "Apply for an officer position",
-            href: links.officerApplications,
-          },
-        ],
-      },
-    ],
-    note: "Contact TSA leadership on BAND with application questions. A specific cutoff time has not been posted here yet.",
+    note: "Search the final member list on the home page. Contact TSA leadership on BAND with membership questions.",
   },
   "change-drop-deadline": {
     introduction:
       "The deadline to change or drop a competitive event is October 10.",
     steps: [
-      {
-        title: "Review your event sign-ups",
-        description:
-          "Find your event tabs in the chapter spreadsheet and check your current sign-ups.",
-        links: [{ label: "Open event sign-ups", href: links.signups }],
-      },
       {
         title: "Confirm how to make a change or drop",
         description:

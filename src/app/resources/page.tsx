@@ -13,11 +13,6 @@ export const metadata: Metadata = {
 };
 
 const usefulLinks = [
-  { title: "Membership progress sheet", href: links.membershipSheet },
-  { title: "Event sign-up spreadsheet", href: links.signups },
-  { title: "Membership form", href: links.membership },
-  { title: "Event sign-up form", href: links.eventSignupForm },
-  { title: "Officer applications", href: links.officerApplications },
   { title: "Parent-Student Agreement file", href: links.parentAgreement },
   {
     title: "Parent-Student Agreement folder",
@@ -66,7 +61,7 @@ export default function ResourcesPage() {
       <PageIntro
         eyebrow="Resources"
         title="The chapter library."
-        description="Catch up on a meeting. Find the right form. Pick up where you left off."
+        description="Catch up on a meeting and find chapter documents."
         number="03"
       />
       <div className="container resource-sections">

@@ -4,11 +4,11 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 export const metadata: Metadata = {
   title: {
-    default: "Elkins TSA | Chapter Dashboard",
+    default: "Elkins TSA | Members",
     template: "%s | Elkins TSA",
   },
   description:
-    "Elkins High School TSA: the chapter calendar, four membership steps, competitive events, and event sign-ups for 2026–2027.",
+    "Elkins High School TSA: search the final 2026–27 member list, access dues and the parent-student agreement, and explore chapter events.",
   icons: { icon: "/icon.svg" },
 };
 export default function RootLayout({

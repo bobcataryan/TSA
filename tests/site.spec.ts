@@ -6,13 +6,6 @@ for (const width of [1440, 834, 390, 320]) {
     await page.setViewportSize({ width, height: 950 });
     const errors: string[] = [];
     page.on("pageerror", (e) => {
-      // Google Sheets emits this telemetry error even when its preview table renders.
-      // The live embed is verified separately below; do not suppress application errors.
-      if (
-        e.message === "DOCS_timing is not defined" &&
-        e.stack?.includes("docs.google.com")
-      )
-        return;
       errors.push(e.message);
     });
     for (const route of routes) {
@@ -32,7 +25,6 @@ for (const width of [1440, 834, 390, 320]) {
       await page.screenshot({
         path: `test-results/screenshots/${width}-${route === "/" ? "dashboard" : route.replaceAll("/", "")}.png`,
         fullPage: true,
-        mask: [page.locator("iframe")],
       });
     }
     expect(errors).toEqual([]);
@@ -59,9 +51,7 @@ test("calendar selects dates, navigates months and returns to today", async ({
   await expect(
     page.getByRole("heading", { name: "October 2026" }),
   ).toBeVisible();
-  await expect(page.locator(".selected-day")).toContainText(
-    "Officer form sign-up deadline",
-  );
+  await expect(page.locator(".selected-day")).toContainText("No events");
   await page.getByRole("button", { name: "Previous month" }).click();
   await expect(
     page.getByRole("heading", { name: "September 2026" }),
@@ -77,15 +67,18 @@ test("calendar selects dates, navigates months and returns to today", async ({
     "6:00–6:45 PM Central Time",
   );
 });
-test("membership actions and Events navigation work", async ({ page }) => {
+test("final member list search and membership actions work", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator(".member-steps>li")).toHaveCount(4);
+  await expect(page.locator(".membership-panel .member-steps>li")).toHaveCount(2);
+  await expect(page.locator(".member-name-grid>li")).toHaveCount(163);
+  await page.getByRole("searchbox", { name: "Search final member list by name" }).fill("aryan goel");
+  await expect(page.locator(".member-name-grid>li")).toHaveText(["Aryan Goel"]);
+  await expect(page.getByRole("status")).toHaveText("1 match");
+  await page.getByRole("searchbox", { name: "Search final member list by name" }).fill("not a member");
+  await expect(page.getByText(/No names match/)).toBeVisible();
   await expect(
     page.getByRole("link", { name: "Pay dues", exact: false }),
   ).toHaveAttribute("href", /revtrak.net/);
-  await expect(
-    page.getByRole("link", { name: "Open form", exact: false }),
-  ).toHaveAttribute("href", "https://forms.gle/kYYZot62bJzpkAXG8");
   await expect(
     page.getByRole("link", { name: "Upload agreement", exact: false }),
   ).toHaveAttribute("href", "https://forms.gle/ATA9eu6MFgsCEpeh7");
@@ -95,27 +88,20 @@ test("membership actions and Events navigation work", async ({ page }) => {
     "href",
     "/documents/2026-27-CTSO-Parent-Student-Agreement.pdf",
   );
-  await expect(
-    page.getByRole("link", { name: "Sign up for events" }),
-  ).toHaveAttribute("href", "https://forms.gle/oqa34gXXsYJgGtP19");
-  await expect(
-    page.getByRole("link", { name: "Check membership progress" }),
-  ).toHaveAttribute("href", /1XzrwVvncEfQUZJimHIfTzv4Nn_v6N_OtNYxX9q-J9OI/);
+  await expect(page.getByText("Membership form")).toHaveCount(0);
+  await expect(page.getByText("Event sign-ups")).toHaveCount(0);
   await page
     .getByRole("navigation")
     .getByRole("link", { name: "Events", exact: true })
     .click();
   await expect(page).toHaveURL(/events\//);
-  await expect(page.locator("iframe")).toHaveAttribute(
-    "src",
-    "https://docs.google.com/spreadsheets/d/1JzBsV2bz8b6W2wM2s79yi831c82TB32lR4dH75gAWxo/preview",
-  );
+  await expect(page.locator("iframe")).toHaveCount(0);
   await page
     .getByRole("navigation")
-    .getByRole("link", { name: "Dashboard", exact: true })
+    .getByRole("link", { name: "Members", exact: true })
     .click();
   await expect(
-    page.getByRole("heading", { name: "Chapter dashboard" }),
+    page.getByRole("heading", { name: "2026–27 membership." }),
   ).toBeVisible();
 });
 test("parent-student agreement is available in chapter files", async ({
@@ -169,12 +155,7 @@ test("event filters and information guide are retained", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "How to find event information" }),
   ).toBeVisible();
-  await expect(
-    page.getByRole("link", { name: "Open Full Spreadsheet" }),
-  ).toHaveAttribute(
-    "href",
-    /1JzBsV2bz8b6W2wM2s79yi831c82TB32lR4dH75gAWxo\/edit/,
-  );
+  await expect(page.getByText("Event sign-ups")).toHaveCount(0);
 });
 test("removed pages are gone", async ({ page }) => {
   for (const path of ["/announcements/", "/sign-ups/", "/about/"]) {
@@ -186,7 +167,6 @@ test("dashboard and event accessibility", async ({ page }) => {
   for (const route of routes) {
     await page.goto(route);
     const report = await new AxeBuilder({ page })
-      .exclude("iframe")
       .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
       .analyze();
     expect(
@@ -199,27 +179,4 @@ test("dashboard and event accessibility", async ({ page }) => {
       })),
     ).toEqual([]);
   }
-});
-test("membership due message closes at the configured instant", async ({
-  page,
-}) => {
-  await page.clock.install({ time: new Date("2026-10-01T04:58:59Z") });
-  await page.goto("/");
-  await expect(page.locator(".membership-due")).toContainText(
-    "Complete all four by",
-  );
-  await page.clock.fastForward(1000);
-  await expect(page.locator(".membership-due")).toContainText(
-    "Membership deadline passed",
-  );
-});
-
-test("the actual Google Sheet renders in the embed", async ({ page }) => {
-  await page.goto("/events/");
-  await page.locator("iframe").scrollIntoViewIfNeeded();
-  const frame = page.frameLocator("iframe");
-  await expect(frame.locator("table").first()).toBeVisible({ timeout: 20000 });
-  await expect(frame.locator("body")).not.toContainText(
-    /You need access|Unable to open the file/,
-  );
 });

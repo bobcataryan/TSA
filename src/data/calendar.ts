@@ -25,16 +25,8 @@ export const calendarEvents: CalendarEvent[] = [
     title: "Membership deadline",
     date: "2026-09-30",
     time: "11:59 PM Central Time",
-    description: "Complete all four membership steps. No exceptions.",
+    description: "Membership dues and Parent-Student Agreement deadline.",
     href: "/deadlines/membership-deadline/",
-    category: "Deadline",
-  },
-  {
-    id: "officer-form-deadline",
-    title: "Officer form sign-up deadline",
-    date: "2026-10-01",
-    description: "Officer form sign-ups are due October 1.",
-    href: "/deadlines/officer-form-deadline/",
     category: "Deadline",
   },
   {

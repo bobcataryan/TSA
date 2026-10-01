@@ -1,5 +1,6 @@
 import { ChapterCalendar } from "@/components/dashboard/calendar";
 import { MemberChecklist } from "@/components/dashboard/member-checklist";
+import { MemberList } from "@/components/dashboard/member-list";
 import { ActionLink } from "@/components/ui/action-link";
 import { events } from "@/data/events";
 import { resources } from "@/data/resources";
@@ -12,10 +13,10 @@ export default function Home() {
             <span className="status-dot" /> Elkins High School / TSA
           </p>
           <h1>
-            Membership <span>requirements.</span>
+            2026–27 <span>membership.</span>
           </h1>
           <p className="heading-description">
-            Complete all four steps to join Elkins TSA for 2026–27.
+            Check the final member list and find your membership documents.
           </p>
         </div>
         <div className="season-mark" aria-label="2026–2027 season">
@@ -26,6 +27,7 @@ export default function Home() {
           <span>TECHNOLOGY STUDENT ASSOCIATION</span>
         </div>
       </header>
+      <MemberList />
       <MemberChecklist />
       <div className="chapter-strip">
         <span>

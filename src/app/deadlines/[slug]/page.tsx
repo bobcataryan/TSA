@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { ActionLink } from "@/components/ui/action-link";
 import { calendarEvents } from "@/data/calendar";
 import { deadlineDetails } from "@/data/deadlines";
-import { links } from "@/data/links";
 
 const deadlines = calendarEvents.filter(
   (event) => event.category === "Deadline",
@@ -86,9 +85,7 @@ export default async function DeadlinePage({ params }: Props) {
           <p className="deadline-note">{details.note}</p>
           {event.id === "membership-deadline" && (
             <div className="step-links">
-              <ActionLink href={links.membershipSheet}>
-                Check membership progress
-              </ActionLink>
+              <ActionLink href="/#members">Search the final member list</ActionLink>
             </div>
           )}
         </section>
