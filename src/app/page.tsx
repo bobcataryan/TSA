@@ -1,46 +1,23 @@
-import { ChapterCalendar } from "@/components/dashboard/calendar";
-import { MemberChecklist } from "@/components/dashboard/member-checklist";
-import { MemberList } from "@/components/dashboard/member-list";
-import { ActionLink } from "@/components/ui/action-link";
-import { events } from "@/data/events";
-import { resources } from "@/data/resources";
+import Link from "next/link";
+import { ProjectField } from "@/components/home/project-field";
+
 export default function Home() {
   return (
-    <div className="container dashboard">
-      <header className="dashboard-heading">
-        <div>
-          <p className="eyebrow">
-            <span className="status-dot" /> Elkins High School / TSA
-          </p>
-          <h1>
-            2026–27 <span>membership.</span>
-          </h1>
-          <p className="heading-description">
-            Check the final member list and find your membership documents.
-          </p>
+    <section className="home-hero" aria-labelledby="home-title">
+      <div className="container home-hero-inner">
+        <h1 className="home-title" id="home-title">
+          <span>Build</span>
+          <em>what matters.</em>
+        </h1>
+        <ProjectField />
+        <div className="home-action">
+          <p className="home-summary">Everything you need in one place.</p>
+          <Link href="/dashboard" className="home-cta">
+            <span>Open dashboard</span>
+            <b aria-hidden="true">↗</b>
+          </Link>
         </div>
-        <div className="season-mark" aria-label="2026–2027 season">
-          <span>THE NEXT CHAPTER</span>
-          <strong>
-            26<span>/</span>27
-          </strong>
-          <span>TECHNOLOGY STUDENT ASSOCIATION</span>
-        </div>
-      </header>
-      <MemberList />
-      <MemberChecklist />
-      <div className="chapter-strip">
-        <span>
-          <span className="status-dot" /> 2026–2027 season
-        </span>
-        <ActionLink href="/events">
-          {events.length} competitive events
-        </ActionLink>
-        <ActionLink href="/resources">
-          {resources.length} chapter documents
-        </ActionLink>
       </div>
-      <ChapterCalendar />
-    </div>
+    </section>
   );
 }

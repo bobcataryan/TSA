@@ -6,16 +6,14 @@ import { navigation } from "@/data/links";
 export function Navbar() {
   const pathname = usePathname();
   return (
-    <header className="site-header">
+    <header className="site-header" data-home={pathname === "/" || undefined}>
       <div className="container navbar">
-        <Link href="/" className="brand" aria-label="Elkins TSA members">
+        <Link href="/" className="brand" aria-label="Elkins TSA home">
           <Brand />
-          <span>
-            ELKINS<small>High School TSA</small>
-          </span>
+          <span className="brand-name">Elkins High School TSA</span>
         </Link>
         <nav aria-label="Main navigation">
-          {navigation.map((item, index) => (
+          {navigation.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -25,16 +23,10 @@ export function Navbar() {
                   : undefined
               }
             >
-              <span className="nav-number" aria-hidden="true">
-                0{index + 1}
-              </span>
               {item.label}
             </Link>
           ))}
         </nav>
-        <span className="school-year">
-          <span className="status-dot" /> 26—27
-        </span>
       </div>
     </header>
   );

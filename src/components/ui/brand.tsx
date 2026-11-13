@@ -5,9 +5,9 @@ export function Brand({ large = false }: { large?: boolean }) {
     return (
       <Image
         src={site.logo}
-        alt="Technology Student Association"
+        alt="Elkins TSA knight crest"
         width={large ? 260 : 64}
-        height={large ? 180 : 44}
+        height={large ? 260 : 64}
         className={large ? "hero-logo" : "brand-logo"}
         priority
       />

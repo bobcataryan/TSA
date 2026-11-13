@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import "@fontsource-variable/geist";
-import "./globals.css";
+import "./site.css";
 import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 export const metadata: Metadata = {
   title: {
-    default: "Elkins TSA | Members",
+    default: "Elkins TSA | 2026–27",
     template: "%s | Elkins TSA",
   },
   description:
-    "Elkins High School TSA: search the final 2026–27 member list, access dues and the parent-student agreement, and explore chapter events.",
-  icons: { icon: "/icon.svg" },
+    "Elkins High School TSA chapter dashboard, deadlines, resources, and organization files for 2026–27.",
+  icons: { icon: "/images/TSA_Logo-transparent.png" },
 };
 export default function RootLayout({
   children,
@@ -25,6 +26,7 @@ export default function RootLayout({
         </a>
         <Navbar />
         <main id="main-content">{children}</main>
+        <Footer />
         <Analytics />
       </body>
     </html>

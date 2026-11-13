@@ -16,12 +16,15 @@ export function MemberList() {
   );
 
   return (
-    <section className="member-list-section" id="members" aria-labelledby="members-title">
+    <section
+      className="member-list-section"
+      id="members"
+      aria-labelledby="members-title"
+    >
       <div className="member-list-top">
         <div>
-          <p className="panel-eyebrow">2026–27 chapter roster</p>
           <h2 id="members-title">Final member list</h2>
-          <p>Search for your name to check the final list.</p>
+          <p>Check the published 2026–27 roster.</p>
         </div>
         <span className="member-total">{members.length} members</span>
       </div>
@@ -43,13 +46,20 @@ export function MemberList() {
           : "Browse all members alphabetically"}
       </p>
       {matches.length ? (
-        <ul className="member-name-grid" tabIndex={0} aria-label="Final members, scroll to browse">
+        <ul
+          className="member-name-grid"
+          tabIndex={0}
+          aria-label="Final members, scroll to browse"
+        >
           {matches.map((name) => (
             <li key={name}>{name}</li>
           ))}
         </ul>
       ) : (
-        <p className="member-empty">No names match “{query.trim()}”. Check the spelling or try part of a name.</p>
+        <p className="member-empty">
+          No names match “{query.trim()}”. Check the spelling or try part of a
+          name.
+        </p>
       )}
     </section>
   );

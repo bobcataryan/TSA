@@ -1,5 +1,5 @@
 {
-  "logo": null,
+  "logo": "/images/TSA%20Logo.png",
   "resources": [
     {
       "id": "2026-27-ctso-parent-student-agreement-ZG9jdW1lbnRzLzIwMjYtMjctQ1RTTy1QYXJlbnQtU3R1ZGVudC1BZ3JlZW1lbnQucGRm",
@@ -9,6 +9,33 @@
       "href": "/documents/2026-27-CTSO-Parent-Student-Agreement.pdf",
       "type": "PDF",
       "parentAgreement": true
+    },
+    {
+      "id": "2027-2028-hs-student-member-guide-ZG9jdW1lbnRzLzIwMjctMjAyOC1IUy1TdHVkZW50LU1lbWJlci1HdWlkZS5wZGY",
+      "title": "2027 2028 HS Student Member Guide",
+      "description": "Chapter document. Open the file for full details.",
+      "category": "Competitions",
+      "href": "/documents/2027-2028-HS-Student-Member-Guide.pdf",
+      "type": "PDF",
+      "parentAgreement": false
+    },
+    {
+      "id": "ideation-worksheet-projects-ZG9jdW1lbnRzL0lkZWF0aW9uLVdvcmtzaGVldC1Qcm9qZWN0cy5kb2N4",
+      "title": "Ideation Worksheet Projects",
+      "description": "Chapter document. Open the file for full details.",
+      "category": "Competitions",
+      "href": "/documents/Ideation-Worksheet-Projects.docx",
+      "type": "DOCX",
+      "parentAgreement": false
+    },
+    {
+      "id": "ideation-worksheet-tests-ZG9jdW1lbnRzL0lkZWF0aW9uLVdvcmtzaGVldC1UZXN0cy5kb2N4",
+      "title": "Ideation Worksheet Tests",
+      "description": "Chapter document. Open the file for full details.",
+      "category": "Competitions",
+      "href": "/documents/Ideation-Worksheet-Tests.docx",
+      "type": "DOCX",
+      "parentAgreement": false
     },
     {
       "id": "events-ZG9jdW1lbnRzL21lZXRpbmdzL0V2ZW50cy5wZGY",
@@ -25,6 +52,15 @@
       "description": "Chapter meeting materials. Review these if you missed the meeting.",
       "category": "Meetings",
       "href": "/documents/meetings/Final%20Sign-ups%20(1).pdf",
+      "type": "PDF",
+      "parentAgreement": false
+    },
+    {
+      "id": "ideation-workshop-meeting-ZG9jdW1lbnRzL21lZXRpbmdzL0lkZWF0aW9uLVdvcmtzaG9wLU1lZXRpbmcucGRm",
+      "title": "Ideation Workshop Meeting",
+      "description": "Chapter meeting materials. Review these if you missed the meeting.",
+      "category": "Meetings",
+      "href": "/documents/meetings/Ideation-Workshop-Meeting.pdf",
       "type": "PDF",
       "parentAgreement": false
     },

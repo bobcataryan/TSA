@@ -1,115 +1,82 @@
 export interface CalendarEvent {
   id: string;
   title: string;
-  date: string; // YYYY-MM-DD, in Central Time
+  date: string;
+  endDate?: string;
   time?: string;
   description?: string;
   href?: string;
   linkLabel?: string;
-  category: "Deadline" | "Meeting" | "Competition" | "Other";
+  category: "Deadline" | "Meeting" | "Competition" | "Conference";
 }
-// Add chapter dates here. No backend or calendar service is needed.
+
 export const calendarEvents: CalendarEvent[] = [
   {
-    id: "parent-information-meeting",
-    title: "Parent information meeting",
-    date: "2026-09-28",
-    time: "6:00–6:45 PM Central Time",
-    description: "Join the parent information meeting on Microsoft Teams.",
-    href: "https://teams.microsoft.com/meet/26033785974118?p=Ojwty4Dc35XF0tMwvQ",
-    linkLabel: "Join meeting",
+    id: "project-building-meeting",
+    title: "Project building meeting",
+    date: "2026-11-17",
+    description: "Bring your project plan and current questions.",
     category: "Meeting",
-  },
-  {
-    id: "membership-deadline",
-    title: "Membership deadline",
-    date: "2026-09-30",
-    time: "11:59 PM Central Time",
-    description: "Membership dues and Parent-Student Agreement deadline.",
-    href: "/deadlines/membership-deadline/",
-    category: "Deadline",
-  },
-  {
-    id: "ideation-workshop",
-    title: "Ideation Workshop",
-    date: "2026-10-06",
-    description:
-      "Workshop focused on project ideation. Time and location to be announced.",
-    category: "Meeting",
-  },
-  {
-    id: "change-drop-deadline",
-    title: "Change/drop deadline",
-    date: "2026-10-10",
-    description: "The deadline to change or drop an event is October 10.",
-    href: "/deadlines/change-drop-deadline/",
-    category: "Deadline",
   },
   {
     id: "ideation-deadline",
     title: "Ideation deadline",
-    date: "2026-10-20",
-    description:
-      "Project ideation is due. The Materials Workshop is also today.",
-    href: "/deadlines/ideation-deadline/",
-    category: "Deadline",
-  },
-  {
-    id: "materials-workshop",
-    title: "Materials Workshop",
-    date: "2026-10-20",
-    description:
-      "Workshop focused on project materials. Time and location to be announced.",
-    category: "Meeting",
-  },
-  {
-    id: "materials-deadline",
-    title: "Materials deadline",
-    date: "2026-11-16",
-    description: "Project materials are due.",
-    href: "/deadlines/materials-deadline/",
+    date: "2026-11-24",
+    description: "Finalize and submit your project direction.",
     category: "Deadline",
   },
   {
     id: "25-percent-checkpoint",
-    title: "25% Checkpoint",
+    title: "25% checkpoint",
     date: "2026-12-01",
-    description: "25% project completion checkpoint.",
-    href: "/deadlines/25-percent-checkpoint/",
+    description: "Show an initial build, outline, or prototype.",
     category: "Deadline",
   },
   {
     id: "50-percent-checkpoint",
-    title: "50% Checkpoint",
+    title: "50% checkpoint",
     date: "2026-12-15",
-    description: "50% project completion checkpoint.",
-    href: "/deadlines/50-percent-checkpoint/",
+    description: "Demonstrate substantial project progress.",
     category: "Deadline",
   },
   {
     id: "75-percent-checkpoint",
-    title: "75% Checkpoint",
-    date: "2027-01-11",
-    description:
-      "75% project completion checkpoint. In-house competition if necessary.",
-    href: "/deadlines/75-percent-checkpoint/",
-    category: "Deadline",
-  },
-  {
-    id: "in-house-competition",
-    title: "In-house competition (if necessary)",
-    date: "2027-01-11",
-    description:
-      "An in-house competition will be held if necessary. Check with TSA leadership for confirmation.",
+    title: "75% checkpoint and in-house competition",
+    date: "2027-01-19",
+    description: "Run the project at competition readiness.",
     category: "Competition",
   },
   {
     id: "project-submission-deadline",
     title: "Project submission deadline",
     date: "2027-01-26",
-    description: "Final project submissions are due.",
-    href: "/deadlines/project-submission-deadline/",
+    description: "Submit the finished project package.",
     category: "Deadline",
   },
+  {
+    id: "regional-conference",
+    title: "Regional conference",
+    date: "2027-02-12",
+    endDate: "2027-02-13",
+    description: "Gulf Coast TSA Regional Conference.",
+    category: "Conference",
+  },
+  {
+    id: "state-conference",
+    title: "State conference",
+    date: "2027-04-19",
+    endDate: "2027-04-22",
+    description: "Texas TSA State Conference.",
+    category: "Conference",
+  },
+  {
+    id: "national-conference",
+    title: "National conference",
+    date: "2027-06-23",
+    endDate: "2027-06-27",
+    description: "National TSA Conference.",
+    category: "Conference",
+  },
 ];
-export const calendarInitialMonth = "2026-09";
+
+export const calendarInitialMonth = "2026-11";

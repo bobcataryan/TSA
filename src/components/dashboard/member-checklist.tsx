@@ -1,4 +1,3 @@
-import { ListChecks } from "lucide-react";
 import { membership } from "@/data/membership";
 import { ActionLink } from "@/components/ui/action-link";
 export function MemberChecklist() {
@@ -10,11 +9,9 @@ export function MemberChecklist() {
     >
       <div className="membership-top">
         <div className="membership-heading">
-          <div className="panel-eyebrow">
-            <ListChecks size={16} /> Membership / 2026–27
-          </div>
-          <h2 id="checklist-title">Dues &amp; agreement<span>.</span></h2>
-          <p>Membership actions and documents</p>
+          <p className="panel-eyebrow">Membership</p>
+          <h2 id="checklist-title">Dues &amp; agreement</h2>
+          <p>Everything needed to finish your chapter requirements.</p>
         </div>
       </div>
       <ol className="member-steps">
